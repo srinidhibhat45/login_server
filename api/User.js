@@ -20,7 +20,7 @@ router.post('/signup', (req, res) => {
             status: "FAILED",
             message: "Empty input fields!"
         })
-    }else if (!/^[a-zA-Z]*$/.test(name)){
+    }else if (!/^[a-zA-Z]+$/.test(name)){
         res.json({
             status: "FAILED",
             message: "Invalid Name entered"
@@ -53,8 +53,8 @@ router.post('/signup', (req, res) => {
                 // Try to create user
 
                 //password handling
-                const salRounds = 10;
-                bcrypt.hash(password, salRounds).then(hashedPassword => {
+                const saltRounds = 10;
+                bcrypt.hash(password, saltRounds).then(hashedPassword => {
                     const newUser = new User({
                         name,
                         email,
